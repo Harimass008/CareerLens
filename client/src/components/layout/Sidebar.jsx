@@ -1,0 +1,4 @@
+import { BriefcaseBusiness, LayoutDashboard, TrendingUp, LogOut } from 'lucide-react';
+export default function Sidebar({ profile, onLogout }) {
+ return <aside className="sidebar"><div className="brand"><span className="brand-icon"><BriefcaseBusiness size={20}/></span> CareerTrack</div><div className="workspace-label">WORKSPACE</div><button className="nav-item active"><LayoutDashboard size={17}/> Overview</button><div className="sidebar-tip"><div className="tip-icon"><TrendingUp size={18}/></div><b>Small steps add up.</b><p>Keep your pipeline fresh. Every follow-up brings you closer to the right opportunity.</p></div><div className="sidebar-bottom"><div className="avatar">{(profile?.username || 'U').slice(0,1).toUpperCase()}</div><div className="user-info"><b>{profile?.username || 'Your account'}</b><span>{profile?.email || 'Job seeker'}</span></div><button className="icon-button" title="Sign out" onClick={onLogout}><LogOut size={17}/></button></div></aside>;
+}

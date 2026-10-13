@@ -1,0 +1,6 @@
+import { CalendarDays, ExternalLink, MapPin, Pencil, Trash2 } from 'lucide-react';
+import { titleCase } from '../../utils/constants';
+export default function ApplicationRow({ application, onEdit, onDelete }) {
+ const app = application;
+ return <article className="application-row" key={app.id}><div className="company-mark">{(app.company || '?').slice(0,1).toUpperCase()}</div><div className="job-main"><div className="job-title-row"><h3>{app.role}</h3><span className={`status-badge status-${app.status}`}>{titleCase(app.status)}</span></div><p className="company-name">{app.company}</p><div className="job-meta">{app.location && <span><MapPin size={13}/>{app.location}</span>}{app.applied_date && <span><CalendarDays size={13}/>{new Date(`${app.applied_date}T00:00:00`).toLocaleDateString()}</span>}{app.salary_range && <span>{app.salary_range}</span>}</div>{app.next_step && <div className="next-step"><b>Next:</b> {app.next_step}</div>}</div><div className="row-actions">{app.job_url && <a className="icon-button" href={app.job_url} target="_blank" rel="noreferrer" title="Open job posting"><ExternalLink size={16}/></a>}<button className="icon-button" onClick={() => onEdit(app)} title="Edit"><Pencil size={16}/></button><button className="icon-button danger-hover" onClick={() => onDelete(app.id)} title="Delete"><Trash2 size={16}/></button></div></article>;
+}

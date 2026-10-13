@@ -1,0 +1,5 @@
+import { Search } from 'lucide-react';
+import { STATUSES, titleCase } from '../../utils/constants';
+export default function PipelineFilters({ counts = {}, statusFilter, onStatusFilter, query, onQueryChange, resultCount }) {
+ return <><div className="pipeline-bars">{STATUSES.map(status => <button key={status} className={`pipeline-step ${statusFilter === status ? 'selected' : ''}`} onClick={() => onStatusFilter(statusFilter === status ? 'all' : status)}><span className={`step-dot s-${status}`}></span><span>{titleCase(status)}</span><b>{counts[status] || 0}</b></button>)}</div><div className="table-toolbar"><div className="search-box"><Search size={17}/><input placeholder="Search company, role, location…" value={query} onChange={event => onQueryChange(event.target.value)}/></div><select value={statusFilter} onChange={event => onStatusFilter(event.target.value)}><option value="all">All statuses</option>{STATUSES.map(status => <option value={status} key={status}>{titleCase(status)}</option>)}</select><span className="count-pill">{resultCount} records</span></div></>;
+}
